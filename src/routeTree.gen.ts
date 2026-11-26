@@ -10,33 +10,215 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppAuditoriaRouteImport } from './routes/_app/auditoria'
+import { Route as AppEscolasRouteImport } from './routes/_app/escolas'
+import { Route as AppImportarRouteImport } from './routes/_app/importar'
+import { Route as AppInconsistenciasRouteImport } from './routes/_app/inconsistencias'
+import { Route as AppMatriculasRouteImport } from './routes/_app/matriculas'
+import { Route as AppMunicipiosRouteImport } from './routes/_app/municipios'
+import { Route as AppPainelRouteImport } from './routes/_app/painel'
+import { Route as AppParametrosRouteImport } from './routes/_app/parametros'
+import { Route as AppPlanoRouteImport } from './routes/_app/plano'
+import { Route as AppProjecaoRouteImport } from './routes/_app/projecao'
+import { Route as AppRelatoriosRouteImport } from './routes/_app/relatorios'
+import { Route as AppUsuariosRouteImport } from './routes/_app/usuarios'
+import { Route as VerifyCodigoRouteImport } from './routes/verify.$codigo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAuditoriaRoute = AppAuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEscolasRoute = AppEscolasRouteImport.update({
+  id: '/escolas',
+  path: '/escolas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppImportarRoute = AppImportarRouteImport.update({
+  id: '/importar',
+  path: '/importar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInconsistenciasRoute = AppInconsistenciasRouteImport.update({
+  id: '/inconsistencias',
+  path: '/inconsistencias',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMatriculasRoute = AppMatriculasRouteImport.update({
+  id: '/matriculas',
+  path: '/matriculas',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMunicipiosRoute = AppMunicipiosRouteImport.update({
+  id: '/municipios',
+  path: '/municipios',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPainelRoute = AppPainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParametrosRoute = AppParametrosRouteImport.update({
+  id: '/parametros',
+  path: '/parametros',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPlanoRoute = AppPlanoRouteImport.update({
+  id: '/plano',
+  path: '/plano',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProjecaoRoute = AppProjecaoRouteImport.update({
+  id: '/projecao',
+  path: '/projecao',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRelatoriosRoute = AppRelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUsuariosRoute = AppUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AppRoute,
+} as any)
+const VerifyCodigoRoute = VerifyCodigoRouteImport.update({
+  id: '/verify/$codigo',
+  path: '/verify/$codigo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/auditoria': typeof AppAuditoriaRoute
+  '/escolas': typeof AppEscolasRoute
+  '/importar': typeof AppImportarRoute
+  '/inconsistencias': typeof AppInconsistenciasRoute
+  '/matriculas': typeof AppMatriculasRoute
+  '/municipios': typeof AppMunicipiosRoute
+  '/painel': typeof AppPainelRoute
+  '/parametros': typeof AppParametrosRoute
+  '/plano': typeof AppPlanoRoute
+  '/projecao': typeof AppProjecaoRoute
+  '/relatorios': typeof AppRelatoriosRoute
+  '/usuarios': typeof AppUsuariosRoute
+  '/verify/$codigo': typeof VerifyCodigoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/auditoria': typeof AppAuditoriaRoute
+  '/escolas': typeof AppEscolasRoute
+  '/importar': typeof AppImportarRoute
+  '/inconsistencias': typeof AppInconsistenciasRoute
+  '/matriculas': typeof AppMatriculasRoute
+  '/municipios': typeof AppMunicipiosRoute
+  '/painel': typeof AppPainelRoute
+  '/parametros': typeof AppParametrosRoute
+  '/plano': typeof AppPlanoRoute
+  '/projecao': typeof AppProjecaoRoute
+  '/relatorios': typeof AppRelatoriosRoute
+  '/usuarios': typeof AppUsuariosRoute
+  '/verify/$codigo': typeof VerifyCodigoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_app/auditoria': typeof AppAuditoriaRoute
+  '/_app/escolas': typeof AppEscolasRoute
+  '/_app/importar': typeof AppImportarRoute
+  '/_app/inconsistencias': typeof AppInconsistenciasRoute
+  '/_app/matriculas': typeof AppMatriculasRoute
+  '/_app/municipios': typeof AppMunicipiosRoute
+  '/_app/painel': typeof AppPainelRoute
+  '/_app/parametros': typeof AppParametrosRoute
+  '/_app/plano': typeof AppPlanoRoute
+  '/_app/projecao': typeof AppProjecaoRoute
+  '/_app/relatorios': typeof AppRelatoriosRoute
+  '/_app/usuarios': typeof AppUsuariosRoute
+  '/verify/$codigo': typeof VerifyCodigoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/auditoria'
+    | '/escolas'
+    | '/importar'
+    | '/inconsistencias'
+    | '/matriculas'
+    | '/municipios'
+    | '/painel'
+    | '/parametros'
+    | '/plano'
+    | '/projecao'
+    | '/relatorios'
+    | '/usuarios'
+    | '/verify/$codigo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/auditoria'
+    | '/escolas'
+    | '/importar'
+    | '/inconsistencias'
+    | '/matriculas'
+    | '/municipios'
+    | '/painel'
+    | '/parametros'
+    | '/plano'
+    | '/projecao'
+    | '/relatorios'
+    | '/usuarios'
+    | '/verify/$codigo'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/login'
+    | '/_app/auditoria'
+    | '/_app/escolas'
+    | '/_app/importar'
+    | '/_app/inconsistencias'
+    | '/_app/matriculas'
+    | '/_app/municipios'
+    | '/_app/painel'
+    | '/_app/parametros'
+    | '/_app/plano'
+    | '/_app/projecao'
+    | '/_app/relatorios'
+    | '/_app/usuarios'
+    | '/verify/$codigo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  VerifyCodigoRoute: typeof VerifyCodigoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +230,151 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/auditoria': {
+      id: '/_app/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AppAuditoriaRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/escolas': {
+      id: '/_app/escolas'
+      path: '/escolas'
+      fullPath: '/escolas'
+      preLoaderRoute: typeof AppEscolasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/importar': {
+      id: '/_app/importar'
+      path: '/importar'
+      fullPath: '/importar'
+      preLoaderRoute: typeof AppImportarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/inconsistencias': {
+      id: '/_app/inconsistencias'
+      path: '/inconsistencias'
+      fullPath: '/inconsistencias'
+      preLoaderRoute: typeof AppInconsistenciasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/matriculas': {
+      id: '/_app/matriculas'
+      path: '/matriculas'
+      fullPath: '/matriculas'
+      preLoaderRoute: typeof AppMatriculasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/municipios': {
+      id: '/_app/municipios'
+      path: '/municipios'
+      fullPath: '/municipios'
+      preLoaderRoute: typeof AppMunicipiosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/painel': {
+      id: '/_app/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof AppPainelRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/parametros': {
+      id: '/_app/parametros'
+      path: '/parametros'
+      fullPath: '/parametros'
+      preLoaderRoute: typeof AppParametrosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/plano': {
+      id: '/_app/plano'
+      path: '/plano'
+      fullPath: '/plano'
+      preLoaderRoute: typeof AppPlanoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/projecao': {
+      id: '/_app/projecao'
+      path: '/projecao'
+      fullPath: '/projecao'
+      preLoaderRoute: typeof AppProjecaoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/relatorios': {
+      id: '/_app/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof AppRelatoriosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/usuarios': {
+      id: '/_app/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof AppUsuariosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/verify/$codigo': {
+      id: '/verify/$codigo'
+      path: '/verify/$codigo'
+      fullPath: '/verify/$codigo'
+      preLoaderRoute: typeof VerifyCodigoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAuditoriaRoute: typeof AppAuditoriaRoute
+  AppEscolasRoute: typeof AppEscolasRoute
+  AppImportarRoute: typeof AppImportarRoute
+  AppInconsistenciasRoute: typeof AppInconsistenciasRoute
+  AppMatriculasRoute: typeof AppMatriculasRoute
+  AppMunicipiosRoute: typeof AppMunicipiosRoute
+  AppPainelRoute: typeof AppPainelRoute
+  AppParametrosRoute: typeof AppParametrosRoute
+  AppPlanoRoute: typeof AppPlanoRoute
+  AppProjecaoRoute: typeof AppProjecaoRoute
+  AppRelatoriosRoute: typeof AppRelatoriosRoute
+  AppUsuariosRoute: typeof AppUsuariosRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAuditoriaRoute: AppAuditoriaRoute,
+  AppEscolasRoute: AppEscolasRoute,
+  AppImportarRoute: AppImportarRoute,
+  AppInconsistenciasRoute: AppInconsistenciasRoute,
+  AppMatriculasRoute: AppMatriculasRoute,
+  AppMunicipiosRoute: AppMunicipiosRoute,
+  AppPainelRoute: AppPainelRoute,
+  AppParametrosRoute: AppParametrosRoute,
+  AppPlanoRoute: AppPlanoRoute,
+  AppProjecaoRoute: AppProjecaoRoute,
+  AppRelatoriosRoute: AppRelatoriosRoute,
+  AppUsuariosRoute: AppUsuariosRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  VerifyCodigoRoute: VerifyCodigoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

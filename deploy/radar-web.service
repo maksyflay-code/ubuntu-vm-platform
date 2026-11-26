@@ -1,0 +1,17 @@
+[Unit]
+Description=Radar FUNDEB - interface web (Node)
+After=network.target radar-pocketbase.service
+
+[Service]
+Type=simple
+User=radar
+Group=radar
+WorkingDirectory=/opt/radar-fundeb/web
+Environment=PORT=3000
+Environment=HOST=127.0.0.1
+ExecStart=/usr/bin/node /opt/radar-fundeb/web/.output/server/index.mjs
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

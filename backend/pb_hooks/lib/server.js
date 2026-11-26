@@ -202,7 +202,7 @@ function processar(app, e, m, ano) {
 }
 
 // ---------------------------------------------------------------- análise completa
-function analise(app, e, m, ano) {
+function analise(app, e, m, ano, pcts) {
   exigirAcesso(e, m, false);
   const mun = app.findRecordById("municipios", m);
   const base = carregarBase(app, m, ano);
@@ -266,6 +266,7 @@ function analise(app, e, m, ano) {
   const projecao = params ? E.projetar(ponderadas, params, recAtual) : null;
 
   const acoes = todos(app, "acoes_modelo", "ativo = true", {}, "ordem").map((r) => ({ id: r.id, ordem: r.getInt("ordem"), descricao: r.getString("descricao"), tipo: r.getString("tipo"), alvo: (function () { try { return JSON.parse(r.getString("alvo") || "{}") || {}; } catch (_) { return {}; } })(), pct: r.getFloat("pct"), ativo: true }));
+  if (pcts) acoes.forEach((a) => { if (pcts[a.id] != null && pcts[a.id] !== "") a.pct = +pcts[a.id]; });
   const receitaAtualTotal = recAtual ? recAtual.total : 0;
   const plano = params ? E.planoDeAcao(A.distribuicao, F.fatores, params, acoes, receitaAtualTotal, A.graves_sem_aee, { fatorCampo: cfg.fator_campo }) : null;
 

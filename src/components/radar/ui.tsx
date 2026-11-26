@@ -23,7 +23,7 @@ export function StatCard({ rotulo, valor, sub, variacao, destaque }: { rotulo: s
   return (
     <div className={cn("card-relatorio p-4", destaque && "bg-secondary")}>
       <div className="eyebrow">{rotulo}</div>
-      <div className="mt-1.5 text-2xl font-semibold num text-foreground">{valor}</div>
+      <div className="mt-1.5 break-words text-xl font-semibold leading-tight num text-foreground xl:text-[1.35rem]">{valor}</div>
       <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
         {variacao !== undefined && variacao !== null && <VarBadge valor={variacao} />}
         {sub}

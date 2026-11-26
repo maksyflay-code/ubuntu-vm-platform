@@ -148,7 +148,8 @@ function etapaBase(etapa, etapaMulti, idade) {
     if ((e.indexOf("multi") >= 0 || e.indexOf("correcao") >= 0) && etapaMulti) fonte = norm(etapaMulti) + " " + e;
     if (fonte.indexOf("anos finais") >= 0) return "af";
     if (fonte.indexOf("anos iniciais") >= 0) return "ai";
-    var m = fonte.match(/(\d)\s*[\u00ba\u00b0o]?\s*ano/);
+    // "Ensino Fundamental de 9 anos - 3º Ano": ignora o "9 anos" do nome da etapa
+    var m = fonte.match(/(\d)\s*[\u00ba\u00b0]\s*ano/) || fonte.replace(/de 9 anos/g, "").replace(/de 8 anos/g, "").match(/(\d)\s*o?\s*ano(?!s)/);
     if (m) return +m[1] >= 6 ? "af" : "ai";
     return "ai";
   }

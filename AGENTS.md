@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Radar FUNDEB — arquitetura
+- Self-hosted, sem Lovable Cloud: backend PocketBase (`backend/pb_migrations`, `backend/pb_hooks`) + interface TanStack Start buildada com `NITRO_PRESET=node-server`, atrás de nginx (ver `DEPLOY.md`). Motivo: roda numa VM Proxmox/Ubuntu do cliente.
+- Toda regra de cálculo FUNDEB fica em `backend/pb_hooks/lib/engine.js` (CommonJS ES2015, sem `?.`/`??`), usado pelo JSVM do PocketBase e pelos testes em `src/test/engine.test.ts`. Motivo: uma única fonte de verdade.
+- Rotas de servidor ficam sob `/backend/v1/*` em `main.pb.js`; cada handler faz `require` de `lib/server.js` (handlers do JSVM são isolados) e checa acesso ao município com `exigirAcesso`.
+- Mudança de esquema = nova migration numerada em `backend/pb_migrations`; nunca editar uma migration já aplicada.
+- O navegador fala com o backend pelo mesmo domínio (`src/lib/pb.ts`); no dev o Vite faz proxy de `/api` e `/backend` para 127.0.0.1:8090.
+- CPF é mascarado no navegador antes do envio; o banco nunca guarda CPF completo.

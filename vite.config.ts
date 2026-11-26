@@ -15,4 +15,13 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Em desenvolvimento, encaminha as chamadas do backend para o PocketBase local (porta 8090).
+  vite: {
+    server: {
+      proxy: {
+        "/api": "http://127.0.0.1:8090",
+        "/backend": "http://127.0.0.1:8090",
+      },
+    },
+  },
 });

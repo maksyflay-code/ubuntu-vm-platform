@@ -48,7 +48,9 @@ routerAdd("GET", "/backend/v1/projecao", (e) => {
 routerAdd("GET", "/backend/v1/plano-acao", (e) => {
   const S = require(`${__hooks}/lib/server.js`);
   const q = e.requestInfo().query;
-  const A = S.analise($app, e, q.municipioId, +q.ano);
+  let pcts = null;
+  try { pcts = q.pcts ? JSON.parse(q.pcts) : null; } catch (_) {}
+  const A = S.analise($app, e, q.municipioId, +q.ano, pcts);
   return e.json(200, { plano: A.plano, potencial: A.potencial });
 }, $apis.requireAuth());
 

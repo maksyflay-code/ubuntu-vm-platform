@@ -1,0 +1,16 @@
+[Unit]
+Description=Radar FUNDEB - backend (PocketBase)
+After=network.target
+
+[Service]
+Type=simple
+User=radar
+Group=radar
+WorkingDirectory=/opt/radar-fundeb/backend
+ExecStart=/opt/radar-fundeb/backend/pocketbase serve --http 127.0.0.1:8090 --dir /opt/radar-fundeb/backend/pb_data --migrationsDir /opt/radar-fundeb/backend/pb_migrations --hooksDir /opt/radar-fundeb/backend/pb_hooks
+Restart=always
+RestartSec=5
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
