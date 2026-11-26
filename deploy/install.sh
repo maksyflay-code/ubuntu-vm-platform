@@ -31,8 +31,11 @@ echo ">> Interface web (build Node)"
 rm -rf /tmp/radar-build && mkdir -p /tmp/radar-build
 tar --exclude=node_modules --exclude=.git --exclude=backend/pb_data -C "$SRC" -cf - . | tar -xf - -C /tmp/radar-build
 cd /tmp/radar-build
-npm install --no-audit --no-fund
-NITRO_PRESET=node-server npm run build
+# O projeto usa bun.lock; o npm falha com "edgesOut" nesse cenário, então usamos o Bun só para o build.
+export BUN_INSTALL=/opt/bun
+if [ ! -x /opt/bun/bin/bun ]; then curl -fsSL https://bun.sh/install | bash; fi
+/opt/bun/bin/bun install
+NITRO_PRESET=node-server /opt/bun/bin/bun run build
 rm -rf "$DEST/web/.output" && cp -r .output "$DEST/web/"
 cd /
 
